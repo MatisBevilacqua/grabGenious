@@ -3,6 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Home from './Components/Home';
 import Bot from './Components/Bot';
+import styled from 'styled-components/native';
 import Product from './Components/Parts/Product';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -13,10 +14,28 @@ import { FontAwesome5 } from '@expo/vector-icons';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
+const Nav = styled.View`
+    padding: 20px;
+    flex: 1;
+`
+
 
 function MainTabNavigator() {
   return (
-    <Tab.Navigator>
+    <View style={{ flex: 1 }}> 
+    <Tab.Navigator screenOptions={{
+      tabBarStyle: {
+        height: '10%',
+        width: '90%',
+        alignSelf: 'center',
+        marginTop: 20,
+        paddingBottom: 16,
+        borderTopWidth: 0,
+        borderRadius: 99990,
+        marginBottom: 20
+      },
+    }}>
+
       <Tab.Screen name="Home" component={Home} options={{
         tabBarActiveTintColor: '#222831',
         tabBarIcon(props){
@@ -32,6 +51,7 @@ function MainTabNavigator() {
         }
       }} />
     </Tab.Navigator>
+    </View>
   );
 }
 
