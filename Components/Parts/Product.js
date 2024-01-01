@@ -5,6 +5,7 @@ import * as Linking from 'expo-linking';
 
 const Container = styled.View`
     width: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,8 +14,20 @@ const Container = styled.View`
     gap: 20px;
 `;
 
+const ContainerItem = styled.View`
+    padding: 50px;
+    width: 90%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    border-radius: 8px;
+`;
+
 const ButtonBuy = styled(TouchableOpacity)`
-    width: 350px;
+    width: 310px;
     height: 40px;
     display: flex;
     align-items: center;
@@ -36,13 +49,15 @@ const Product = ({ route, navigation }) => {
 
     return (
         <Container>
-            <Image source={{ uri: photo }} style={{ width: 250, height: 250 }} />
-            <Text style={{ fontSize: 20 }}>Prix: {price}</Text>
-            <Text style={{ fontSize: 20 }}>Marque: {brand_title}</Text>
-            <Text style={{ fontSize: 20 }}>Taile: {size}</Text>
-            <Text style={{ fontSize: 20 }}>Etat: {status}</Text>
-            <Text style={{ fontSize: 20 }}>Publié: {date}</Text>
-            <ButtonBuy onPress={() => Linking.openURL(url)}><Text style={{ color: 'white' }}>Acheter</Text></ButtonBuy>
+            <ContainerItem>
+                <Image source={{ uri: photo }} style={{ width: 250, height: 250 }} />
+                <Text style={{ fontSize: 20 }}>Prix: {price}</Text>
+                <Text style={{ fontSize: 20 }}>Marque: {brand_title}</Text>
+                <Text style={{ fontSize: 20 }}>Taile: {size}</Text>
+                <Text style={{ fontSize: 20 }}>Etat: {status}</Text>
+                <Text style={{ fontSize: 20, textAlign: 'center' }}>Publié: {date}</Text>
+                <ButtonBuy onPress={() => Linking.openURL(url)}><Text style={{ color: 'white' }}>Acheter</Text></ButtonBuy>
+            </ContainerItem>
         </Container>
     );
 };

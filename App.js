@@ -38,14 +38,16 @@ function MainTabNavigator() {
 
       <Tab.Screen name="Home" component={Home} options={{
         tabBarActiveTintColor: '#222831',
+        headerShown: false,
         tabBarIcon(props){
-          return <Feather name="home" size={24} color={props.color} />
+          return <Feather name="home" size={24} color={props.color}  />
         } 
       }} />
 
 
       <Tab.Screen name="Bot" component={Bot} options={{
         tabBarActiveTintColor: '#222831',
+        headerShown: false,
         tabBarIcon(props){
           return <FontAwesome5 name="robot" size={24} color={props.color} />
         }

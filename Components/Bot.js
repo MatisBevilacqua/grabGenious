@@ -4,6 +4,8 @@ import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity, TextInput } 
 import GetRecentProducts from './Request/getRecentProduct';
 import SelectDropdown from 'react-native-select-dropdown'
 import styled from 'styled-components/native';
+import LogoLow from './Parts/LogoLow';
+
 
 const ContainerFilter = styled.View`
     padding: 20px;
@@ -24,62 +26,66 @@ export default function Bot({ navigation }) {
     const [selectBrand, setSelectBrand] = useState('Nike');
     const [showFlatList, setShowFlatList] = useState(true); 
     const knownBrands = [
-        'Adidas', 
-        'Arc\'teryx', 
-        'Armani', 
-        'ASICS', 
-        'Balenciaga', 
-        'Burberry', 
-        'Bvlgari', 
-        'Calvin Klein', 
-        'Caterpillar', 
-        'Chanel', 
-        'Coach', 
-        'Columbia', 
-        'Converse', 
-        'Crocs', 
-        'Diesel', 
-        'Dior', 
-        'Dr. Martens', 
-        'Fendi', 
-        'Fila', 
-        'Fossil', 
-        'Gucci', 
-        'Guess', 
-        'H&M', 
-        'Hugo Boss', 
-        'Kate Spade', 
-        'Lacoste', 
-        'Levi\'s', 
-        'Louis Vuitton', 
-        'Lululemon', 
-        'Michael Kors', 
-        'Merrell', 
-        'New Balance', 
-        'Nike', 
-        'Oakley', 
-        'Patagonia', 
-        'Prada', 
-        'Puma', 
-        'Ralph Lauren', 
-        'Ray-Ban', 
-        'Reebok', 
-        'Salomon', 
-        'Saucony', 
-        'Skechers', 
-        'Supreme', 
-        'Tiffany & Co.', 
-        'Timberland', 
-        'Tommy Hilfiger', 
-        'The North Face', 
-        'Tory Burch', 
-        'UGG', 
-        'Under Armour', 
-        'Vans', 
-        'Versace', 
-        'Yves Saint Laurent', 
+        'Adidas',
+        'Arc\'teryx',
+        'Armani',
+        'ASICS',
+        'Balenciaga',
+        'Bellow',
+        'Burberry',
+        'Bvlgari',
+        'Calvin Klein',
+        'Carhartt',
+        'Caterpillar',
+        'Chanel',
+        'Coach',
+        'Columbia',
+        'Converse',
+        'Crocs',
+        'Diesel',
+        'Dior',
+        'Dr. Martens',
+        'Fendi',
+        'Fila',
+        'Fossil',
+        'Gucci',
+        'Guess',
+        'H&M',
+        'Hugo Boss',
+        'Kate Spade',
+        'Lacoste',
+        'Levi\'s',
+        'Louis Vuitton',
+        'Lululemon',
+        'Michael Kors',
+        'Merrell',
+        'New Balance',
+        'Nike',
+        'Oakley',
+        'Patagonia',
+        'Polar',
+        'Prada',
+        'Puma',
+        'Ralph Lauren',
+        'Ray-Ban',
+        'Reebok',
+        'Salomon',
+        'Saucony',
+        'Skechers',
+        'Supreme',
+        'Tiffany & Co.',
+        'Timberland',
+        'Tommy Hilfiger',
+        'The North Face',
+        'Tory Burch',
+        'UGG',
+        'Under Armour',
+        'Vans',
+        'Versace',
+        'Yves Saint Laurent',
         'Zara'
     ];
+    
     
     const [price, setPrice] = useState(1000);
 
@@ -130,6 +136,7 @@ export default function Bot({ navigation }) {
 
     return (
         <View style={styles.container}>
+            <LogoLow/>
             <ContainerFilter>    
                 <SelectDropdown
                     data={knownBrands}
@@ -158,26 +165,30 @@ export default function Bot({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#fff'
     },
     articleContainer: {
         marginVertical: 10,
         marginHorizontal: 20,
         padding: 10,
-        borderWidth: 1,
-        borderColor: '#ccc',
+        borderWidth: 5,
+        borderColor: '#EFEFEF',
         borderRadius: 5,
+        paddingTop: 20,
+        paddingLeft: 20,
+        paddingRight: 20,
+        gap: 12
     },
     articleTitle: {
-        fontSize: 18,
+        fontSize: 25,
         fontWeight: 'bold',
     },
     articleDetails: {
         fontStyle: 'italic',
     },
     articleImage: {
-        width: 100,
-        height: 100,
+        width: 200,
+        height: 200,
         resizeMode: 'cover',
         borderRadius: 5,
         marginTop: 5,
