@@ -5,7 +5,7 @@ import Home from './Components/Home';
 import Bot from './Components/Bot';
 import styled from 'styled-components/native';
 import Product from './Components/Parts/Product';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Feather } from '@expo/vector-icons'; 
@@ -19,6 +19,14 @@ const Nav = styled.View`
     flex: 1;
 `
 
+const MyTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: 'white'
+  },
+};
+
 
 function MainTabNavigator() {
   return (
@@ -28,6 +36,7 @@ function MainTabNavigator() {
         height: '10%',
         width: '90%',
         alignSelf: 'center',
+        backgroundColor: '#0F233E',
         marginTop: 20,
         paddingBottom: 16,
         borderTopWidth: 0,
@@ -37,19 +46,19 @@ function MainTabNavigator() {
     }}>
 
       <Tab.Screen name="Home" component={Home} options={{
-        tabBarActiveTintColor: '#222831',
+        tabBarActiveTintColor: '#557C98',
         headerShown: false,
         tabBarIcon(props){
-          return <Feather name="home" size={24} color={props.color}  />
+          return <Feather name="home" size={28} color={props.color}  />
         } 
       }} />
 
 
       <Tab.Screen name="Bot" component={Bot} options={{
-        tabBarActiveTintColor: '#222831',
+        tabBarActiveTintColor: '#557C98',
         headerShown: false,
         tabBarIcon(props){
-          return <FontAwesome5 name="robot" size={24} color={props.color} />
+          return <FontAwesome5 name="robot" size={28} color={props.color} />
         }
       }} />
     </Tab.Navigator>
@@ -59,7 +68,7 @@ function MainTabNavigator() {
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={MyTheme}>
       <Stack.Navigator>
         <Stack.Screen name="main" component={MainTabNavigator}  options={{ headerShown: false }}/>
         <Stack.Screen name="Product" component={Product} />

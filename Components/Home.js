@@ -1,49 +1,41 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity, TextInput, SafeAreaView, ScrollView, } from 'react-native';
+import {  useFonts, Inter_900Black } from '@expo-google-fonts/inter';
 import GetCookies from './Request/getCookie';
-import { StatusBar } from 'expo-status-bar';
-import styled from 'styled-components/native';
 import { Image } from 'expo-image';
-import TalkLogo from '../assets/talk_logo.png';
+import Banner1 from '../assets/app/banner1.png';
+import styled from 'styled-components/native';
+import Header from './Parts/Header';
+
 
 const Container = styled.View`
     width: '100%';
     display: flex;
-    padding: 70px 20px 20px 20px;
+    margin: 50px 0 0 0;
+    padding: 50px 20px 0 20px;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
 `;
 
-const ContainerWrap = styled.View`
-    width: '100%';
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 20px;
-`
-
-const Article = styled.View`
-    width: 150px;
-    height:150px;
-    background-color: white;
-    font-size: 12px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 20px;
-`
-const ContainerTalk = styled.View`
+const ContainerNews = styled.View`
     width: 100%;
-    height: 100px;
-    background-color: white;
-    margin: 0 0 40px 0;
+    height: 330px;
+    margin: 0 0 10px 0;
     border-radius: 12px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+`
+
+const PartsContainerNews = styled.View`
+    width: 100%;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    display: flex;
     justify-content: center;
+    background-color: #557C98;
+    padding: 10px;
 `;
+
 
 export default function Home() {
 
@@ -51,50 +43,38 @@ export default function Home() {
         GetCookies();
     })
 
-    return (
-        <SafeAreaView>
-            <ScrollView>
-                <Container>
+    let [fontsLoaded] = useFonts({
+        Inter_900Black,
+    });
 
-                    <ContainerTalk>
-                        <Image
-                            style={{ width: 75, height:60, margin: 20, position: 'absolute', left: 0 }}
-                            source={TalkLogo}
-                            contentFit="cover"
-                            transition={1000}
-                        />
-                        <Text style={{ fontWeight: 'bold', marginLeft:50, marginTop: 10, fontSize: 18 }}>Strong addition,</Text>
-                        <Text style={{ fontWeight: 'bold', marginLeft:50 }}>on weekday evenings</Text>
-                    </ContainerTalk>
+    if(!fontsLoaded){
+        console.log('Matis');
+    }else{
+        return (
+            <>
+                <Header></Header>
+                <SafeAreaView>
+                    <ScrollView style={{ paddingBottom: 20 }}>
+                        <Container>
+                            <Text style={{ fontWeight: 'bold', fontSize:50, color:'#0F233E', fontFamily: 'Inter_900Black', marginTop:50 }}>Bienvenue, Matis</Text>
+                            <ContainerNews>
+                                <Image
+                                    style={{ width: '100%', height: '80%', borderTopLeftRadius: 12, borderTopRightRadius: 12 }}
+                                    source={Banner1}
+                                    contentFit="cover"
+                                    transition={1000}
+                                />
 
-                    <ContainerWrap>
-                        <Article>
-                            <Text style={{ fontSize: 50 }}>🚀</Text>
-                            <Text style={{ fontWeight: 'bold' }}>Fast</Text>
-                        </Article>
-                        <Article>
-                            <Text style={{ fontSize: 50, }}>🔑</Text>
-                            <Text style={{ fontWeight: 'bold', fontSize: 15 }}>Reliability</Text>
-                        </Article>
-                    </ContainerWrap>
+                                <PartsContainerNews>
+                                    <Text style={{ fontSize: 18, color: 'white' }}>Obtenez 3 jetons par heure, en regardant une publicité.</Text>
+                                </PartsContainerNews>
 
-                    <ContainerWrap>
-                        <Article>
-                            <Text style={{ fontSize: 50 }}>💥</Text>
-                            <Text style={{ fontWeight: 'bold', fontSize: 15 }}>Accessibility</Text>
-                        </Article>
-                        <Article>
-                            <Text style={{ fontSize: 50 }}>🥇</Text>
-                            <Text style={{ fontWeight: 'bold', fontSize: 15 }}>Competitive</Text>
-                        </Article>
-                        {/* <Container>
-                    <Text style={{ fontSize: 30, fontWeight: 'bold' }}>Grabfaster</Text>
-                    <Text style={{ fontSize: 18 }}>Astuces :</Text>
-                    <Text>Les ventes atteignent des sommets particulièrement le dimanche, journée de prédilection des acheteurs sur Vinted, ainsi que les soirs en semaine à partir de 18h</Text>
-                </Container> */}
-                    </ContainerWrap>
-                </Container>
-            </ScrollView>
-        </SafeAreaView>
-    );
+                            </ContainerNews>
+                        </Container>
+                    </ScrollView>
+                </SafeAreaView>
+            </>
+        );
+    }
+
 }

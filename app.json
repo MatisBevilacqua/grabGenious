@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "GrabGenius",
-    "slug": "GrabGenius",
+    "slug": "vinted",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#337580"
+      "backgroundColor": "#26567E"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -20,7 +20,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#337580"
+        "backgroundColor": "#26567E"
       },
       "package": "com.vintedbot.vinted"
     },
@@ -29,7 +29,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "a254e945-7bc6-4d8f-8e34-8dd6084aaf43"
+        "projectId": "6aa0a7dd-5d2c-4d6f-b769-0d25922f9722"
       }
     }
   }
