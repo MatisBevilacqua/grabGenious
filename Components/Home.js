@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity, TextInput, SafeAreaView, ScrollView, } from 'react-native';
-import {  useFonts, Inter_900Black } from '@expo-google-fonts/inter';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
+import { useNavigation } from '@react-navigation/native';
 import GetCookies from './Request/getCookie';
 import { Image } from 'expo-image';
 import Banner1 from '../assets/app/banner1.png';
 import styled from 'styled-components/native';
 import Header from './Parts/Header';
-
 
 const Container = styled.View`
     width: '100%';
@@ -39,24 +40,43 @@ const PartsContainerNews = styled.View`
 
 export default function Home() {
 
+    const navigation = useNavigation();
+
+    const [surname, setSurname] = useState('');
+
     useEffect(() => {
-        GetCookies();
-    })
+        const fetchData = async () => {
+            GetCookies();
+
+            const token = await AsyncStorage.getItem('token');
+            const surname = await AsyncStorage.getItem('surname');
+            setSurname(surname);
+            console.log(token);
+            console.log(surname);
+            console.log('Token from AsyncStorage:', token);
+
+            if (token == null) {
+                navigation.navigate('Welcome');
+            }
+        };
+
+        fetchData();
+    }, []);
 
     let [fontsLoaded] = useFonts({
         Inter_900Black,
     });
 
-    if(!fontsLoaded){
+    if (!fontsLoaded) {
         console.log('Matis');
-    }else{
+    } else {
         return (
             <>
                 <Header></Header>
                 <SafeAreaView>
                     <ScrollView style={{ paddingBottom: 20 }}>
                         <Container>
-                            <Text style={{ fontWeight: 'bold', fontSize:50, color:'#0F233E', fontFamily: 'Inter_900Black', marginTop:50 }}>Bienvenue, Matis</Text>
+                            <Text style={{ fontWeight: 'bold', fontSize: 50, color: '#0F233E', fontFamily: 'Inter_900Black', marginTop: 50 }}>Bienvenue, {surname}</Text>
                             <ContainerNews>
                                 <Image
                                     style={{ width: '100%', height: '80%', borderTopLeftRadius: 12, borderTopRightRadius: 12 }}
