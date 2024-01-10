@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 import styled from 'styled-components/native';
 import TitleBrand from './TitleBrand';
-import Coin from './Coin';
+import CoinButton from './CoinButton';
 
 const ContainerHeader = styled.View`
     width: 100%;
@@ -19,7 +19,7 @@ export default function Header(){
     return(
         <ContainerHeader>
             <TitleBrand/>
-            <Coin/> 
+            <CoinButton/> 
         </ContainerHeader>
     );
 }

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 import { Image } from 'expo-image';
 import CoinImg from '../../assets/app/coin.png';
+import { useNavigation } from '@react-navigation/native';
 
 
 
-const ContainerCoin = styled.View`
+const ContainerCoin = styled(TouchableOpacity)`
     width: 70px;
     border-radius: 20px;
     background-color: #557C98;
@@ -18,12 +19,14 @@ const ContainerCoin = styled.View`
     padding: 5px 5px 5px 10px;
 `;
 
-export default function Coin() {
+export default function CoinButton() {
 
     const [numberCoin, setNumberCoin] = useState(3);
 
+    const navigation = useNavigation();
+
     return (
-        <ContainerCoin>
+        <ContainerCoin onPress={() => { navigation.navigate('Coin') }}>
             <Text style={{ color: 'white', fontSize: 20 }}>{numberCoin}</Text>
             <Image
                 style={{ width: 30, height: 30 }}

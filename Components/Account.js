@@ -80,19 +80,19 @@ export default function Account(){
                 <ContainerProfil>
                     <Text style={{  fontWeight: 'bold', fontSize:30, color:'#0F233E', fontFamily: 'Inter_900Black', paddingBottom:30  }}>Mon compte</Text>
                     <ContainerProfilArticle>
-                        <Text>Prénom : {userData.lastname}</Text>
+                        <Text>Prénom - {userData.lastname}</Text>
                     </ContainerProfilArticle>
 
                     <ContainerProfilArticle>
-                        <Text>Nom : {userData.surname}</Text>
+                        <Text>Nom - {userData.surname}</Text>
                     </ContainerProfilArticle>
 
                     <ContainerProfilArticle>
-                        <Text>Email : {userData.email}</Text>
+                        <Text>Email - {userData.email}</Text>
                     </ContainerProfilArticle>
 
                     <ContainerProfilArticle>
-                        <Text>Mot de passe : *******</Text>
+                        <Text>Mot de passe - *******</Text>
                     </ContainerProfilArticle>
                     <TouchableOpacity onPress={clearAsyncStorage}>
                         <Text style={{ color: 'red', textAlign: 'center', marginTop: 50 }}>Se déconnecter</Text>

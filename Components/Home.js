@@ -84,7 +84,6 @@ export default function Home() {
                                     contentFit="cover"
                                     transition={1000}
                                 />
-
                                 <PartsContainerNews>
                                     <Text style={{ fontSize: 18, color: 'white' }}>Obtenez 3 jetons par heure, en regardant une publicité.</Text>
                                 </PartsContainerNews>
