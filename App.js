@@ -9,6 +9,8 @@ import Account from './Components/Account';
 import Register from './Components/Auth/Register';
 import Welcome from './Components/Auth/Welcome';
 import Login from './Components/Auth/Login';
+import Coin from './Components/Coin';
+import Payment from './Components/Parts/Payment';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -112,6 +114,24 @@ export default function App() {
           headerBackVisible: false,
           gestureEnabled: false,
         }} />
+        <Stack.Screen name='Coin' component={Coin} options={{
+          gestureEnabled: false,
+          headerShadowVisible: false,
+          headerTintColor: '#0F233E',
+          animationEnabled: Platform.OS === 'android' ? false : true,
+          headerTitle() {
+            return <></>
+          }
+        }} /> 
+        <Stack.Screen name='Payment' component={Payment} options={{
+          gestureEnabled: false,
+          headerShadowVisible: false,
+          headerTintColor: '#0F233E',
+          animationEnabled: Platform.OS === 'android' ? false : true,
+          headerTitle() {
+            return <></>
+          }
+        }} />        
       </Stack.Navigator>
     </NavigationContainer>
   );
