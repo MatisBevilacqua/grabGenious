@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity, TextInput, SafeAreaView, ScrollView, } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
 import LoginRequest from '../Request/Auth/LoginRequest';
@@ -92,24 +93,29 @@ export default function Login() {
         console.log('Matis');
     } else {
         return (
-            <Container>
-                <Text style={{ fontWeight: 'bold', fontSize: 40, color: '#0F233E', fontFamily: 'Inter_900Black' }}>Se connecter</Text>
-                <Text style={{ color: '#0F233E' }}>Nous sommes ravis de vous <Text style={{ color: '#5CC8BF' }}>revoir</Text></Text>
-                <ContainerForm>
-                    <Write
-                        placeholder='Email'
-                        value={email}
-                        onChangeText={text => setEmail(text)}
-                    />
-                    <Write
-                        placeholder='Mot de passe'
-                        secureTextEntry={true}
-                        value={password}
-                        onChangeText={text => setPassword(text)}
-                    />
-                    <ButtonSend onPress={handleRegister}><Text style={{ color: 'white' }}>Se connecter</Text></ButtonSend>
-                </ContainerForm>
-            </Container>
+            <SafeAreaView>
+                <ScrollView>
+
+                    <Container>
+                        <Text style={{ fontWeight: 'bold', fontSize: 40, color: '#0F233E', fontFamily: 'Inter_900Black' }}>Se connecter</Text>
+                        <Text style={{ color: '#0F233E' }}>Nous sommes ravis de vous <Text style={{ color: '#5CC8BF' }}>revoir</Text></Text>
+                        <ContainerForm>
+                            <Write
+                                placeholder='Email'
+                                value={email}
+                                onChangeText={text => setEmail(text)}
+                            />
+                            <Write
+                                placeholder='Mot de passe'
+                                secureTextEntry={true}
+                                value={password}
+                                onChangeText={text => setPassword(text)}
+                            />
+                            <ButtonSend onPress={handleRegister}><Text style={{ color: 'white' }}>Se connecter</Text></ButtonSend>
+                        </ContainerForm>
+                    </Container>
+                </ScrollView>
+            </SafeAreaView>
         );
     }
 

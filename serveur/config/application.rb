@@ -2,13 +2,20 @@ require_relative "boot"
 
 require "rails/all"
 
-# Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
 module Serveur
   class Application < Rails::Application
-    # Initialize configuration defaults for originally generated Rails version.
+
+    
+    # Middleware Rack CORS pour autoriser les requêtes externes
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*' # Vous pouvez spécifier des domaines spécifiques au lieu de '*'
+        resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options]
+      end
+    end
+
     config.load_defaults 7.1
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do

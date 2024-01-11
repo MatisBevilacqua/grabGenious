@@ -65,17 +65,24 @@ export default function Coin() {
             </ButtonAds>
 
             <ButtonBuyContainer>
-                <ButtonBuy onPress={() => { navi }}></ButtonBuy>
-                <ButtonBuy></ButtonBuy>
-                <ButtonBuy></ButtonBuy>
-            </ButtonBuyContainer>
+                <ButtonBuy onPress={() => {
 
-            <ButtonBuyContainer>
-                <ButtonBuy></ButtonBuy>
-                <ButtonBuy></ButtonBuy>
-                <ButtonBuy></ButtonBuy>
-            </ButtonBuyContainer>
+                    navigation.navigate('Payment', { price: 4.99, quantity: 30 })
 
+                }} />
+
+                <ButtonBuy onPress={() => {
+
+                    navigation.navigate('Payment', { price: 9.99, quantity: 75 })
+
+                }} />
+
+                <ButtonBuy onPress={() => {
+
+                    navigation.navigate('Payment', { price: 13.99, quantity: 90 })
+
+                }} />
+            </ButtonBuyContainer>
         </Container>
     );
 }

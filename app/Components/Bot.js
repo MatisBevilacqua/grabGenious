@@ -38,7 +38,7 @@ const ArticleContainer = styled.View`
 const Bar = styled.View`
     width: 2px;
     height: 100%;
-    transform: translate(-0.5px);
+    transform: translate(-0.1px);
     background-color: #0F233E;
 `;
 
@@ -72,6 +72,7 @@ export default function Bot({ navigation }) {
         'Calvin Klein',
         'Carhartt',
         'Caterpillar',
+        'Celine',
         'Chanel',
         'Coach',
         'Columbia',
@@ -140,7 +141,7 @@ export default function Bot({ navigation }) {
                 .catch(error => {
                     console.error('Erreur :', error);
                 });
-        }, 5000);
+        }, 3000);
 
         return () => clearInterval(intervalId);
     }, [articles]);
