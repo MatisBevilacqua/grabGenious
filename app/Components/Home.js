@@ -85,7 +85,7 @@ export default function Home() {
                                     transition={1000}
                                 />
                                 <PartsContainerNews>
-                                    <Text style={{ fontSize: 18, color: 'white' }}>Obtenez 3 jetons par heure, en regardant une publicité.</Text>
+                                    <Text style={{ fontSize: 18, color: 'white' }}>Obtenez 3 pièces par heure, en regardant une publicité.</Text>
                                 </PartsContainerNews>
 
                             </ContainerNews>

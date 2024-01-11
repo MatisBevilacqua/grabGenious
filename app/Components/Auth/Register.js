@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity, TextInput, SafeAreaView, ScrollView, } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
@@ -70,7 +71,7 @@ export default function Register() {
             const token = response.user.token;
             storeData(token, lastname, surname, email, '3');
             navigation.navigate('main');
-            
+
 
         } else {
             console.error("Please fill in all fields");
@@ -99,40 +100,46 @@ export default function Register() {
         console.log('Matis');
     } else {
         return (
-            <Container>
-                <Text style={{ fontWeight: 'bold', fontSize: 40, color: '#0F233E', fontFamily: 'Inter_900Black' }}>S'inscrire</Text>
-                <Text style={{ color: '#0F233E' }}>Entrée vos informations, afin de profitez pleinement de <Text style={{ color: '#5CC8BF' }}>GrabGenious</Text></Text>
-                <ContainerForm>
-                    <Write
-                        placeholder='Nom'
-                        value={lastname}
-                        onChangeText={text => setLastname(text)}
-                    />
-                    <Write
-                        placeholder='Prénom'
-                        value={surname}
-                        onChangeText={text => setSurname(text)}
-                    />
-                    <Write
-                        placeholder='Email'
-                        value={email}
-                        onChangeText={text => setEmail(text)}
-                    />
-                    <Write
-                        placeholder='Mot de passe'
-                        secureTextEntry={true}
-                        value={password}
-                        onChangeText={text => setPassword(text)}
-                    />
-                    <Write
-                        placeholder='Confirmer votre mot de passe'
-                        secureTextEntry={true}
-                        value={passwordVerify}
-                        onChangeText={text => setPasswordVerify(text)}
-                    />
-                    <ButtonSend onPress={handleRegister}><Text style={{ color: 'white' }}>S'inscrire</Text></ButtonSend>
-                </ContainerForm>
-            </Container>
+            <SafeAreaView>
+                <ScrollView>
+                    <KeyboardAwareScrollView>
+                        <Container>
+                            <Text style={{ fontWeight: 'bold', fontSize: 40, color: '#0F233E', fontFamily: 'Inter_900Black' }}>S'inscrire</Text>
+                            <Text style={{ color: '#0F233E' }}>Entrée vos informations, afin de profitez pleinement de <Text style={{ color: '#5CC8BF' }}>GrabGenious</Text></Text>
+                            <ContainerForm>
+                                <Write
+                                    placeholder='Nom'
+                                    value={lastname}
+                                    onChangeText={text => setLastname(text)}
+                                />
+                                <Write
+                                    placeholder='Prénom'
+                                    value={surname}
+                                    onChangeText={text => setSurname(text)}
+                                />
+                                <Write
+                                    placeholder='Email'
+                                    value={email}
+                                    onChangeText={text => setEmail(text)}
+                                />
+                                <Write
+                                    placeholder='Mot de passe'
+                                    secureTextEntry={true}
+                                    value={password}
+                                    onChangeText={text => setPassword(text)}
+                                />
+                                <Write
+                                    placeholder='Confirmer votre mot de passe'
+                                    secureTextEntry={true}
+                                    value={passwordVerify}
+                                    onChangeText={text => setPasswordVerify(text)}
+                                />
+                                <ButtonSend onPress={handleRegister}><Text style={{ color: 'white' }}>S'inscrire</Text></ButtonSend>
+                            </ContainerForm>
+                        </Container>
+                    </KeyboardAwareScrollView>
+                </ScrollView>
+            </SafeAreaView>
         );
     }
 

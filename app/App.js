@@ -88,7 +88,11 @@ export default function App() {
     <NavigationContainer theme={MyTheme}>
       <Stack.Navigator>
         <Stack.Screen name="main" component={MainTabNavigator} options={{ headerShown: false }} />
-        <Stack.Screen name="Product" component={Product} />
+        <Stack.Screen name="Product" component={Product}  options={{ 
+          gestureEnabled: false,
+          headerShadowVisible: false,
+          headerTintColor: '#0F233E',
+         }}/>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name='Register' component={Register} options={{
           gestureEnabled: false,
