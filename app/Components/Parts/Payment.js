@@ -6,7 +6,6 @@ import creditCardType from 'credit-card-type';
 import Gradient from '../../assets/app/gradientCard.png';
 import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
 import Visa from '../../assets/app/card/visa.png';
-import { CameraKitCameraScreen } from 'react-native-camera-kit';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 

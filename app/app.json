@@ -27,16 +27,24 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
+      ]
+    ],
     "extra": {
       "eas": {
-        "projectId": "6aa0a7dd-5d2c-4d6f-b769-0d25922f9722"
+        "projectId": "8e750a19-5071-42b9-bc5b-8690cc06b83f"
       }
     }
   },
-
   "react-native-google-mobile-ads": {
     "android_app_id": "ca-app-pub-7212548447499892~5170902750",
     "ios_app_id": "ca-app-pub-7212548447499892~8702953650"
   }
-
-} 
+}
