@@ -9,6 +9,7 @@ import Banner1 from '../assets/app/banner1.png';
 import styled from 'styled-components/native';
 import Header from './Parts/Header';
 
+
 const Container = styled.View`
     width: '100%';
     display: flex;
@@ -50,14 +51,14 @@ export default function Home() {
 
             const token = await AsyncStorage.getItem('token');
             const surname = await AsyncStorage.getItem('surname');
+            const coin = await AsyncStorage.getItem('coin');
+            console.log(coin);
             setSurname(surname);
-            console.log(token);
-            console.log(surname);
             console.log('Token from AsyncStorage:', token);
 
-            if (token == null) {
-                navigation.navigate('Welcome');
-            }
+            // if (token == null) {
+            //     navigation.navigate('Welcome');
+            // }
         };
 
         fetchData();

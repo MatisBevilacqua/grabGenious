@@ -17,6 +17,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Feather } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+import 'expo-dev-client';
+
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -37,107 +39,107 @@ const MyTheme = {
 
 function MainTabNavigator() {
   return (
-    <View style={{ flex: 1 }}>
-      <Tab.Navigator screenOptions={{
-        tabBarStyle: {
-          height: '10%',
-          width: '90%',
-          alignSelf: 'center',
-          backgroundColor: '#0F233E',
-          marginTop: 20,
-          paddingBottom: 16,
-          borderTopWidth: 0,
-          borderRadius: 99990,
-          marginBottom: 20
-        },
-      }}>
+      <View style={{ flex: 1 }}>
+        <Tab.Navigator screenOptions={{
+          tabBarStyle: {
+            height: '10%',
+            width: '90%',
+            alignSelf: 'center',
+            backgroundColor: '#0F233E',
+            marginTop: 20,
+            paddingBottom: 16,
+            borderTopWidth: 0,
+            borderRadius: 99990,
+            marginBottom: 20
+          },
+        }}>
 
-        <Tab.Screen name="Home" component={Home} options={{
-          tabBarActiveTintColor: '#557C98',
-          headerShown: false,
-          tabBarIcon(props) {
-            return <Feather name="home" size={28} color={props.color} />
-          }
-        }} />
-
-
-        <Tab.Screen name="Bot" component={Bot} options={{
-          tabBarActiveTintColor: '#557C98',
-          headerShown: false,
-          tabBarIcon(props) {
-            return <FontAwesome5 name="robot" size={28} color={props.color} />
-          }
-        }} />
-
-        <Tab.Screen name="Account" component={Account} options={{
-          tabBarActiveTintColor: '#557C98',
-          headerShown: false,
-          tabBarIcon(props) {
-            return <MaterialIcons name="account-circle" size={28} color={props.color} />
-          }
-        }} />
+          <Tab.Screen name="Home" component={Home} options={{
+            tabBarActiveTintColor: '#557C98',
+            headerShown: false,
+            tabBarIcon(props) {
+              return <Feather name="home" size={28} color={props.color} />
+            }
+          }} />
 
 
-      </Tab.Navigator>
-    </View>
+          <Tab.Screen name="Bot" component={Bot} options={{
+            tabBarActiveTintColor: '#557C98',
+            headerShown: false,
+            tabBarIcon(props) {
+              return <FontAwesome5 name="robot" size={28} color={props.color} />
+            }
+          }} />
+
+          <Tab.Screen name="Account" component={Account} options={{
+            tabBarActiveTintColor: '#557C98',
+            headerShown: false,
+            tabBarIcon(props) {
+              return <MaterialIcons name="account-circle" size={28} color={props.color} />
+            }
+          }} />
+
+
+        </Tab.Navigator>
+      </View>
   );
 }
 
 export default function App() {
   return (
-    <NavigationContainer theme={MyTheme}>
-      <Stack.Navigator>
-        <Stack.Screen name="main" component={MainTabNavigator} options={{ headerShown: false }} />
-        <Stack.Screen name="Product" component={Product}  options={{ 
-          gestureEnabled: false,
-          headerShadowVisible: false,
-          headerTintColor: '#0F233E',
-         }}/>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name='Register' component={Register} options={{
-          gestureEnabled: false,
-          headerShadowVisible: false,
-          headerTintColor: '#0F233E',
-          animationEnabled: Platform.OS === 'android' ? false : true,
-          headerTitle() {
-            return <></>
-          }
-        }} />
-        <Stack.Screen name='Login' component={Login} options={{
-          gestureEnabled: false,
-          headerShadowVisible: false,
-          headerTintColor: '#0F233E',
-          animationEnabled: Platform.OS === 'android' ? false : true,
-          headerTitle() {
-            return <></>
-          }
-        }} />
-        <Stack.Screen name='Welcome' component={Welcome} options={{
-          headerShown: false,
-          headerBackTitleVisible: false,
-          headerBackVisible: false,
-          gestureEnabled: false,
-        }} />
-        <Stack.Screen name='Coin' component={Coin} options={{
-          gestureEnabled: false,
-          headerShadowVisible: false,
-          headerTintColor: '#0F233E',
-          animationEnabled: Platform.OS === 'android' ? false : true,
-          headerTitle() {
-            return <></>
-          }
-        }} /> 
-        <Stack.Screen name='Payment' component={Payment} options={{
-          gestureEnabled: false,
-          headerShadowVisible: false,
-          headerTintColor: '#0F233E',
-          animationEnabled: Platform.OS === 'android' ? false : true,
-          headerTitle() {
-            return <></>
-          }
-        }} />        
-      </Stack.Navigator>
-    </NavigationContainer>
+      <NavigationContainer theme={MyTheme}>
+        <Stack.Navigator>
+          <Stack.Screen name="main" component={MainTabNavigator} options={{ headerShown: false }} />
+          <Stack.Screen name="Product" component={Product}  options={{ 
+            gestureEnabled: false,
+            headerShadowVisible: false,
+            headerTintColor: '#0F233E',
+          }}/>
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name='Register' component={Register} options={{
+            gestureEnabled: false,
+            headerShadowVisible: false,
+            headerTintColor: '#0F233E',
+            animationEnabled: Platform.OS === 'android' ? false : true,
+            headerTitle() {
+              return <></>
+            }
+          }} />
+          <Stack.Screen name='Login' component={Login} options={{
+            gestureEnabled: false,
+            headerShadowVisible: false,
+            headerTintColor: '#0F233E',
+            animationEnabled: Platform.OS === 'android' ? false : true,
+            headerTitle() {
+              return <></>
+            }
+          }} />
+          <Stack.Screen name='Welcome' component={Welcome} options={{
+            headerShown: false,
+            headerBackTitleVisible: false,
+            headerBackVisible: false,
+            gestureEnabled: false,
+          }} />
+          <Stack.Screen name='Coin' component={Coin} options={{
+            gestureEnabled: false,
+            headerShadowVisible: false,
+            headerTintColor: '#0F233E',
+            animationEnabled: Platform.OS === 'android' ? false : true,
+            headerTitle() {
+              return <></>
+            }
+          }} /> 
+          <Stack.Screen name='Payment' component={Payment} options={{
+            gestureEnabled: false,
+            headerShadowVisible: false,
+            headerTintColor: '#0F233E',
+            animationEnabled: Platform.OS === 'android' ? false : true,
+            headerTitle() {
+              return <></>
+            }
+          }} />        
+        </Stack.Navigator>
+      </NavigationContainer>
   );
 }
 
