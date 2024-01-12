@@ -13,6 +13,17 @@ class Api::V1::UsersController < ApplicationController
       end
     end
 
+    def last_coin_update
+      user = User.find_by(token: request.headers['Authorization'])
+      puts user
+      if user
+        render json: { last_coin_update: user.last_coin_update }
+      else
+        render json: { error: 'Invalide' }, status: :unprocessable_entity
+      end
+    end
+    
+
     def show
         user = User.find_by(token: params[:id])
         if user
@@ -31,6 +42,8 @@ class Api::V1::UsersController < ApplicationController
           render json: { error: 'Identifiants invalides' }, status: :unauthorized
         end
     end
+
+
   
     private
   

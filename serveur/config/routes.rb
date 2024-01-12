@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       resources :users do
         collection do
           post 'login', to: 'users#login'
+          get 'last_coin_update', to: 'users#last_coin_update'
         end
       end
     end

@@ -1,11 +1,11 @@
-export default function LoginRequest(userData) {
+export default function GetRecentlyCoin(token) {
     return new Promise((resolve, reject) => {
-        fetch('http://127.0.0.1:3000/api/v1/users/login/', {
-            method: 'POST',
+        fetch(`http://127.0.0.1:3000/api/v1/users/last_coin_update/`, {
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': '4f5405038e4ead84e794c713c9314a13f5c66054da675a72d3b17e9f75a86ad90552bfddb3b7f0f7a0dac7bc3f7154c64fb5'
             },
-            body: JSON.stringify(userData),
             credentials: 'include',
         })
         .then(response => {
@@ -15,11 +15,11 @@ export default function LoginRequest(userData) {
             return response.json();
         })
         .then(data => {
-            resolve(data); 
+            resolve(data);
         })
         .catch(error => {
-            console.error('Error during registration:', error);
-            reject(error); 
+            console.error('Error during GET request:', error);
+            reject(error);
         });
     });
 }
