@@ -7,12 +7,15 @@
       "developmentClient": true,
       "distribution": "internal",
       "node": "18.18.0"
-    },
+    },  
     "preview": {
       "distribution": "internal",
       "node": "18.18.0",
       "android": {
         "buildType": "apk"
+      },
+      "ios": {
+        "simulator": true
       }
     },
     "production": {

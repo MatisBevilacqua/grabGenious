@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity, TextInput, SafeAreaView, ScrollView, } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 import GetCookies from './Request/getCookie';
 import { Image } from 'expo-image';
 import Banner1 from '../assets/app/banner1.png';
@@ -42,27 +42,29 @@ const PartsContainerNews = styled.View`
 export default function Home() {
 
     const navigation = useNavigation();
+    const isFocused = useIsFocused();
 
     const [surname, setSurname] = useState('');
 
+
+    const fetchData = async () => {
+        GetCookies();
+
+        const token = await AsyncStorage.getItem('token');
+        const surname = await AsyncStorage.getItem('surname');
+        const coin = await AsyncStorage.getItem('coin');
+        console.log(coin);
+        setSurname(surname);
+        console.log('Token from AsyncStorage:', token);
+
+        // if (token == null) {
+        //     navigation.navigate('Welcome');
+        // }
+    };
+
     useEffect(() => {
-        const fetchData = async () => {
-            GetCookies();
-
-            const token = await AsyncStorage.getItem('token');
-            const surname = await AsyncStorage.getItem('surname');
-            const coin = await AsyncStorage.getItem('coin');
-            console.log(coin);
-            setSurname(surname);
-            console.log('Token from AsyncStorage:', token);
-
-            // if (token == null) {
-            //     navigation.navigate('Welcome');
-            // }
-        };
-
         fetchData();
-    }, []);
+    }, [isFocused, fetchData]);
 
     let [fontsLoaded] = useFonts({
         Inter_900Black,

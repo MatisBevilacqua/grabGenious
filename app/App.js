@@ -117,6 +117,7 @@ export default function App() {
           <Stack.Screen name='Welcome' component={Welcome} options={{
             headerShown: false,
             headerBackTitleVisible: false,
+            gestureEnabled: false,
             headerBackVisible: false,
             gestureEnabled: false,
           }} />

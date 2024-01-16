@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 import { Image } from 'expo-image';
 import CoinImg from '../../assets/app/coin.png';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ContainerCoin = styled(TouchableOpacity)`
@@ -29,9 +29,7 @@ export default function CoinButton() {
 
     useEffect(() => {
         updateCoins();
-        const intervalId = setInterval(updateCoins, 5000); 
-        return () => clearInterval(intervalId);
-    }, []);
+    }, [useIsFocused, updateCoins]);
 
     return (
         <ContainerCoin onPress={() => { navigation.navigate('Coin') }}>

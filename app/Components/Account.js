@@ -4,7 +4,7 @@ import {  useFonts, Inter_900Black } from '@expo-google-fonts/inter';
 import styled from 'styled-components/native';
 import Header from './Parts/Header';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 
 
 
@@ -36,27 +36,26 @@ export default function Account(){
         email: '',
     });
     
+    const fetchData = async () => {
+        try {
+            const lastname = await AsyncStorage.getItem('lastname');
+            const surname = await AsyncStorage.getItem('surname');
+            const email = await AsyncStorage.getItem('email');
+
+            setUserData({
+                lastname: lastname || '', 
+                surname: surname || '',
+                email: email || '',
+            });
+
+        } catch (e) {
+            console.error('Error retrieving token:', e);
+        }
+    };
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const lastname = await AsyncStorage.getItem('lastname');
-                const surname = await AsyncStorage.getItem('surname');
-                const email = await AsyncStorage.getItem('email');
-
-                setUserData({
-                    lastname: lastname || '', 
-                    surname: surname || '',
-                    email: email || '',
-                });
-
-            } catch (e) {
-                console.error('Error retrieving token:', e);
-            }
-        };
-
         fetchData(); 
-    }, []);
+    }, [useIsFocused, fetchData]);
 
     const clearAsyncStorage = async () => {
         try {

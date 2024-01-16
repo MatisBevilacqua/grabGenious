@@ -15,7 +15,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.vintedbot.vinted"
     },
     "android": {
       "adaptiveIcon": {
@@ -39,12 +40,12 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "8e750a19-5071-42b9-bc5b-8690cc06b83f"
+        "projectId": "114f8aa6-96c8-435c-a8a9-3be8a96e8ed0"
       }
     }
   },
   "react-native-google-mobile-ads": {
-    "android_app_id": "ca-app-pub-7212548447499892~5170902750",
-    "ios_app_id": "ca-app-pub-7212548447499892~8702953650"
+    "android_app_id": "ca-app-pub-7212548447499892~8702953650",
+    "ios_app_id": "ca-app-pub-7212548447499892~5170902750"
   }
 }

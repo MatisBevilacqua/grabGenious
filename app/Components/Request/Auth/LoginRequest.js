@@ -1,6 +1,6 @@
 export default function LoginRequest(userData) {
     return new Promise((resolve, reject) => {
-        fetch('http://127.0.0.1:3000/api/v1/users/login/', {
+        fetch('http://74.208.106.113/api/v1/users/login/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacity, TextInput, SafeAreaView, ScrollView, Image } from 'react-native';
+import React, { useEffect } from 'react';
+import { Text, TouchableOpacity, View, Image } from 'react-native';
 import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
 import { useNavigation } from '@react-navigation/native';
 import Logo from '../../assets/app/logo.png';
@@ -52,20 +52,27 @@ const ContainerAuth = styled.View`
     gap: 25px;
 `
 
-export default function Welcome(){
-
+export default function Welcome() {
     const navigation = useNavigation();
 
-    return(
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('beforeRemove', (e) => {
+            e.data.action.type === "GO_BACK" ? e.preventDefault() : null;
+        });
+
+        return unsubscribe;
+    }, [navigation]);
+
+    return (
         <ContainerWelcome>
             <ContainerTop>
-            <Image source={Logo} style={{ width:80, height:80, position: 'absolute', top: 0, left:0, marginTop: 40, marginLeft: 10 }} />
+                <Image source={Logo} style={{ width: 80, height: 80, position: 'absolute', top: 0, left: 0, marginTop: 40, marginLeft: 10 }} />
                 <Text style={{ fontWeight: 'bold', fontSize: 45, color: '#FFFF', fontFamily: 'Inter_900Black', textAlign: 'center' }}>Bienvenue, sur GrabGenious</Text>
                 <Text style={{ color: 'white' }}>Inscris ou connecte toi, pour utiliser l'application</Text>
             </ContainerTop>
             <ContainerAuth>
                 <ButtonRegister onPress={() => { navigation.navigate('Register') }}><Text style={{ color: 'white', fontWeight: 'bold' }}>S'inscrire</Text></ButtonRegister>
-                <ButtonLogin onPress={() => { navigation.navigate('Login') }}><Text style={{ color: '#0F233E', fontWeight: 'bold'  }}>Se connecter</Text></ButtonLogin>
+                <ButtonLogin onPress={() => { navigation.navigate('Login') }}><Text style={{ color: '#0F233E', fontWeight: 'bold' }}>Se connecter</Text></ButtonLogin>
             </ContainerAuth>
         </ContainerWelcome>
     );
