@@ -6,9 +6,9 @@ import Banner2 from '../assets/app/banner2.png';
 import GetRecentlyCoin from './Request/User/GetRecentlyCoin';
 import { RewardedAd, RewardedAdEventType, TestIds } from 'react-native-google-mobile-ads';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Platform } from 'react-native';
+import UpdateCoin from './Request/User/UpdateCoin';
 
-const adUnitId = 'ca-app-pub-7212548447499892/7605494409';
+const adUnitId = TestIds.REWARDED;
 
 const rewarded = RewardedAd.createForAdRequest(adUnitId, {
     keywords: ['fashion', 'clothing'],
@@ -57,21 +57,23 @@ export default function Coin() {
     const navigation = useNavigation();
     const [loaded, setLoaded] = useState(false);
     const [authorization, setAuthorization] = useState(false);
-    const [showAd, setShowAd] = useState(false);  
+    const [showAd, setShowAd] = useState(false);
+    const [token, setToken] = useState(null);
 
     useEffect(() => {
-        const verifyCoin = async () => {
-            const token = await AsyncStorage.getItem('token');
-            const response = await GetRecentlyCoin(token);
+        const fetchData = async () => {
+            const storedToken = await AsyncStorage.getItem('token');
+            setToken(storedToken);
+
+            const response = await GetRecentlyCoin(storedToken);
             const responseCoin = response.last_coin_update;
-            
 
             if (responseCoin === null || (responseCoin && Math.abs(new Date() - new Date(responseCoin)) / (1000 * 60) > 10)) {
                 setAuthorization(true);
             }
         };
 
-        verifyCoin();
+        fetchData();
 
         const unsubscribeLoaded = rewarded.addAdEventListener(RewardedAdEventType.LOADED, () => {
             setLoaded(true);
@@ -79,17 +81,16 @@ export default function Coin() {
 
         const unsubscribeEarned = rewarded.addAdEventListener(
             RewardedAdEventType.EARNED_REWARD,
-            reward => {
-                console.log('User earned reward of ', reward);
-                AsyncStorage.getItem('coin')
-                    .then((currentCoins) => {
-                        const updateCoinsInt = parseInt(currentCoins, 10) + reward.amount;
-                        return AsyncStorage.setItem('coin', String(updateCoinsInt));
-                    })
-                    .catch((error) => {
-                        console.error('Error updating coins:', error);
-                    })
-
+            async (reward) => { 
+                console.log('L\'utilisateur a gagné une récompense de ', reward);
+                try {
+                    const currentCoins = await AsyncStorage.getItem('coin');
+                    const updateCoinsInt = parseInt(currentCoins, 10) + reward.amount;
+                    await UpdateCoin(token);    
+                    await AsyncStorage.setItem('coin', String(updateCoinsInt));
+                } catch (error) {
+                    console.error('Erreur lors de la mise à jour des jetons :', error);
+                }
             },
         );
 
@@ -99,14 +100,15 @@ export default function Coin() {
             unsubscribeLoaded();
             unsubscribeEarned();
         };
-    }, []);
+    }, [token]);
 
     const showRewardedAd = () => {
         if (loaded) {
+            console.log('lol');
             rewarded.show();
             setShowAd(false);
         } else {
-            console.error('Rewarded ad not loaded yet. Please wait for it to load.');
+            console.error('La publicité récompensée n\'est pas encore chargée. Veuillez attendre qu\'elle se charge.');
         }
     };
 
@@ -122,7 +124,7 @@ export default function Coin() {
                 Obtenir des <Text style={{ color: '#5CC8BF' }}>jetons</Text>
             </Text>
             {authorization && (
-                <ButtonAds title="Show Rewarded Ad" onPress={() => setShowAd(true)}>
+                <ButtonAds title="Afficher la publicité récompensée" onPress={() => setShowAd(true)}>
                     <Image
                         style={{ width: '100%', height: '80%', borderTopLeftRadius: 12, borderTopRightRadius: 12 }}
                         source={Banner2}
@@ -130,7 +132,7 @@ export default function Coin() {
                         transition={1000}
                     />
                     <ButtonAdsBanner>
-                        <Text style={{ color: 'white', fontSize: 18 }}>Obtenir 3 coins</Text>
+                        <Text style={{ color: 'white', fontSize: 18 }}>Obtenir 3 jetons</Text>
                     </ButtonAdsBanner>
                 </ButtonAds>
             )}

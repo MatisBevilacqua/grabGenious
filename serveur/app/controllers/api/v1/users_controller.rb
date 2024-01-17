@@ -15,14 +15,12 @@ class Api::V1::UsersController < ApplicationController
 
     def last_coin_update
       user = User.find_by(token: request.headers['Authorization'])
-      puts user
       if user
         render json: { last_coin_update: user.last_coin_update }
       else
         render json: { error: 'Invalide' }, status: :unprocessable_entity
       end
     end
-
 
     def add_coins
       user = User.find_by(token: request.headers['Authorization'])
@@ -42,8 +40,25 @@ class Api::V1::UsersController < ApplicationController
       else
         render json: { error: 'Token invalide' }, status: :unprocessable_entity
       end
+
     end
+
+    def remove_coins
+      user = User.find_by(token: request.headers['Authorization'])
     
+      if user
+        coin_now = user.coin
+    
+        if (coin_now - 3) >= 0
+          user.update(coin: user.coin - 3)
+          render json: { message: 'Coin supprimé avec succès', new_coin: user.coin }, status: :ok
+        else
+          render json: { message: 'Il vous manque des coins' }, status: :unprocessable_entity
+        end
+      else
+        render json: { message: 'Utilisateur non trouvé' }, status: :not_found
+      end
+    end
     
     def show
         user = User.find_by(token: params[:id])

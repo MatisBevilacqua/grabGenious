@@ -6,6 +6,7 @@ Rails.application.routes.draw do
           post 'login', to: 'users#login'
           get 'last_coin_update', to: 'users#last_coin_update'
           post 'add_coins', to: 'users#add_coins'
+          post 'remove_coins', to: 'users#remove_coins'
         end
       end
     end

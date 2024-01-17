@@ -58,14 +58,15 @@ export default function Login() {
             try {
                 const response = await LoginRequest(userData);
                 if (response && response.user && response.user.token) {
-                    const { token, lastname, surname, email } = response.user;
-                    storeData(token, lastname, surname, email, '3');
+                    console.log(response.user.coin);
+                    const { token, lastname, surname, email, coin } = response.user;
+                    storeData(token, lastname, surname, email, coin.toString());
                     navigation.navigate('main');
                 } else {
                     console.error("Invalid response from server");
                 }
             } catch (error) {
-                console.error('Error duringefz login:', error);
+                console.error('Error during login:', error);
             }
         } else {
             console.error("Please fill in all fields");
